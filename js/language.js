@@ -1,11 +1,36 @@
-let url = 'https://okaypanelback.ru/php/language.php'
+async function initLanguage(){
+    
+  if(!localStorage.getItem('userLanguage')){
+    let url = 'https://okaypanelback.ru/php/language.php'
+    let response = await fetch(url);
+    if (response.ok) { 
+      let json = await response.json();
+      if(json=='fall'){
+        console.log('language not find')
+      }else{
+          selectLanguage(json)
+          //console.log(json)
+      }
+    } else {
+      console.log('error reqwest language')
+    }
+  }else{
+    //console.log('language is selected')
+  }
 
-let response = await fetch(url);
+  document.addEventListener("DOMContentLoaded", function(){
+    document.querySelector('.wrapper.languages').onclick = function() {
+      localStorage.setItem("userLanguage", 'selectedByUser')
+    };
+  })
 
-if (response.ok) { 
-  let json = await response.json();
-  console.log(json)
-} else {
-  alert("Ошибка HTTP: " + response.status);
+  function selectLanguage(lang){
+    let xpath = `//p[text()='${lang[1]}']`;
+    let matchingElement = document.evaluate(xpath, document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue;
+    localStorage.setItem("userLanguage", lang[0])
+    matchingElement.click()
+  }
+
 }
 
+initLanguage()

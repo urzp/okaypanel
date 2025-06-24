@@ -1,5 +1,7 @@
-let languages = {
-    "aa": ["Afar", "Afar"],
+<?php
+
+$languagesList = '{
+  "aa": ["Afar", "Afar"],
   "ab": ["Abkhazian", "Аҧсшәа"],
   "ae": ["Avestan", "𐎧𐏁𐎗𐏁𐎠"],
   "af": ["Afrikaans", "Afrikaans"],
@@ -181,5 +183,6 @@ let languages = {
   "yo": ["Yoruba", "Yorùbá"],
   "za": ["Zhuang", "Cuengh"],
   "zh": ["Chinese", "中文"],
-  "zu": ["Zulu", "isiZulu"],
-}
+  "zu": ["Zulu", "isiZulu"]
+}';
+
