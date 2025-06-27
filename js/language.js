@@ -38,6 +38,10 @@ async function initLanguage(){
     }, 300)
   }
 
+  function selectCurrency(lang){
+    $(`.wrapper.languages [data-select-currency="${lang[2].toLowerCase()}"]`)[0].click()
+  }
+
 }
 
 initLanguage()
