@@ -25,10 +25,17 @@ async function initLanguage(){
   })
 
   function selectLanguage(lang){
-    let xpath = `//p[text()='${lang[1]}']`;
-    let matchingElement = document.evaluate(xpath, document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue;
-    localStorage.setItem("userLanguage", lang[0])
-    matchingElement.click()
+    let idInterval = setInterval(
+      function(){
+        let xpath = `//p[text()='${lang[1]}']`;
+        let matchingElement = document.evaluate(xpath, document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue;
+        console.log(`trySelectLang ${lang[1]}`)
+        if(!!matchingElement){
+          localStorage.setItem("userLanguage", lang[0])
+          matchingElement.click()
+          clearInterval(idInterval)
+        }
+    }, 300)
   }
 
 }
